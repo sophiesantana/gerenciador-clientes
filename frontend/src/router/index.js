@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/Login.vue'
-import SignInAdm from '../components/SignInAdm.vue'
-import SignInCostumer from '../components/SignInCostumer.vue'
+import SignUpAdm from '../components/SignUpAdm.vue'
+import SignUpCostumer from '../components/SignUpCostumer.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,12 +19,12 @@ const router = createRouter({
     {
       path: '/sign-in-adm',
       name: 'sign-in-adm',
-      component: SignInAdm
+      component: SignUpAdm
     },
     {
       path: '/sign-in-costumer',
       name: 'sign-in-costumer',
-      component: SignInCostumer
+      component: SignUpCostumer
     }
   ]
 })

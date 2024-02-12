@@ -6,10 +6,7 @@ export default {
     return {
       formData: {
         nome: '',
-        data: '',
         cpf: '',
-        rg: '',
-        telefone: '',
         password: ''
       },
       isLoading: false,
@@ -44,23 +41,8 @@ export default {
       </div>
 
       <div>
-        <label for="data">Data de Nascimento:</label>
-        <input type="date" id="data" v-model="formData.data">
-      </div>
-
-      <div>
         <label for="cpf">CPF:</label>
         <input type="number" id="cpf" v-model="formData.cpf">
-      </div>
-
-      <div>
-        <label for="rg">RG:</label>
-        <input type="number" id="rg" v-model="formData.rg">
-      </div>
-
-      <div>
-        <label for="telefone">Telefone:</label>
-        <input type="number" id="telefone" placeholder="DDD + telefone" v-model="formData.telefone">
       </div>
 
       <div>
