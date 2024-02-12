@@ -1,14 +1,24 @@
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import Header from './components/Header.vue';
+
+const $route = useRoute();
+
+const showCustomerLink = computed(() => {
+  return $route.path === '/costumers' || '/sign-in-costumer';
+});
 </script>
 
 <template>
   <main>
     <Header />
     <nav id="links-header">
-      <RouterLink to="/login">Login Adm</RouterLink>
-      <RouterLink to="/sign-in-adm">Cadastro de Adm</RouterLink>
-      <RouterLink to="/sign-in-costumer">Cadastro de Cliente</RouterLink>
+      <RouterLink v-if="!showCustomerLink" to="/login">Login Adm</RouterLink>
+      <RouterLink v-if="!showCustomerLink" to="/sign-in-adm">Cadastro de Adm</RouterLink>
+      <RouterLink v-if="showCustomerLink" to="/login">Voltar</RouterLink>
+      <RouterLink v-if="showCustomerLink" to="/sign-in-costumer">Cadastro de Cliente</RouterLink>
+      <RouterLink v-if="showCustomerLink" to="/costumers">Listar Clientes</RouterLink>
     </nav>
   <RouterView />
   </main>
@@ -16,23 +26,25 @@ import Header from './components/Header.vue';
 
 <style scoped>
 
-#links-header {
-  background-color: yellow;
+nav {
+  font-size: 15px;
+  text-align: center;
+  margin: 2rem 2rem;
+  color: rgba(0, 39, 46, 0.986);
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+nav a {
+  color: rgb(255, 198, 241);
 }
 
 nav a.router-link-exact-active {
-  color: green;
+  color: rgb(223, 0, 167);
+  font-weight: bolder;
+  font-size: 20px;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+nav a:hover {
+  font-size: 20px;
 }
 
 nav a {
