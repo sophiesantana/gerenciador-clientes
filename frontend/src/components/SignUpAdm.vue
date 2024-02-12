@@ -7,7 +7,8 @@ export default {
       formData: {
         nome: '',
         cpf: '',
-        password: ''
+        password: '',
+        url: window.location.href
       },
       isLoading: false,
       error: null,
