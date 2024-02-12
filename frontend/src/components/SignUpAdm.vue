@@ -42,7 +42,7 @@ export default {
 
       <div>
         <label for="cpf">CPF:</label>
-        <input type="number" id="cpf" v-model="formData.cpf">
+        <input type="text" id="cpf" v-model="formData.cpf">
       </div>
 
       <div>
