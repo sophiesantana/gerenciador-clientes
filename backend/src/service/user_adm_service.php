@@ -7,13 +7,13 @@
     protected $cpf;
     protected $password;
 
-    public function __construct($nome, $cpf, $password)
-    {
+    public function create($nome, $cpf, $password) {
       $this->nome = $nome;
       $this->cpf = $cpf;
       $this->password = password_hash($password, PASSWORD_BCRYPT);
 
-      new UserAdmRepository($this->nome, $this->cpf, $this->password);
+      $user_adm_repository = new UserAdmRepository();
+      $user_adm_repository->create($this->nome, $this->cpf, $this->password);
     }
   }
 ?>

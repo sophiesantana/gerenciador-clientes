@@ -3,26 +3,13 @@
   include __DIR__ . '/../clients/db_mysql_connection/index.php';
 
   class UserAdmRepository extends ConnectDB {
-    protected $nome;
-    protected $cpf;
-    protected $password;
-
-    public function __construct($nome, $cpf, $password)
-    {
-      $this->nome = $nome;
-      $this->password = $password;
-      $this->cpf = $cpf;
-
-      $this->create();
-    }
-
-    public function create() {
-      $query = "INSERT INTO learn.admin_users (username, password, cpf) VALUES (?, ?, ?)";
+    public function create($nome, $cpf, $password) {
+      $query = "INSERT INTO learn.admin_users (username, cpf, password) VALUES (?, ?, ?)";
       $conn = parent::__construct();
       $stmt = $conn->prepare($query);
       
       if ($stmt) {
-        $stmt->bind_param("sss", $this->nome, $this->password, $this->cpf);
+        $stmt->bind_param("sss", $nome, $cpf, $password);
         if ($stmt->execute()) {
             echo "User inserted successfully!";
         } else {
