@@ -15,4 +15,10 @@
         $user_adm_controller = new UserAdmController;
         $user_adm_controller->create($data_request);
     }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $data_request['url'] == 'http://localhost:5173/login') {
+        include './src/controller/user_adm_controller.php';
+        $user_adm_controller = new UserAdmController;
+        $user_adm_controller->login($data_request);
+    }
 ?>

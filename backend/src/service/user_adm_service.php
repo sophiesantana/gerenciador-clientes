@@ -15,5 +15,13 @@
       $user_adm_repository = new UserAdmRepository();
       $user_adm_repository->create($this->nome, $this->cpf, $this->password);
     }
+
+    public function login($cpf, $password) {
+      $this->cpf = $cpf;
+      $this->password = $password;
+
+      $user_adm_repository = new UserAdmRepository();
+      $user_adm_repository->login($this->cpf, $this->password);
+    }
   }
 ?>

@@ -22,5 +22,38 @@
 
     $conn->close();
     }
+
+    public function login($cpf, $password) {
+      $query = "SELECT * FROM learn.admin_users WHERE cpf=?";
+      $conn = parent::__construct();
+
+      $stmt = $conn->prepare($query);
+
+      if ($stmt) {
+          $stmt->bind_param("s", $cpf);
+          $stmt->execute();
+
+          $result = $stmt->get_result();
+
+          if ($result->num_rows > 0) {
+              $user = $result->fetch_assoc();
+              $hashedPassword = $user['password'];
+
+              if (password_verify($password, $hashedPassword)) {
+                  echo "User Authenticated!";
+              } else {
+                  echo "CPF or Password Incorrect.";
+              }
+          } else {
+              echo "CPF or Password Incorrect.";
+          }
+
+          $stmt->close();
+      } else {
+          echo "Error preparing statement: " . $conn->error;
+      }
+
+      $conn->close();
+    }
   }
 ?>
