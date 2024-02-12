@@ -8,7 +8,11 @@
         exit();
     }
 
-    include './src/controller/user_adm_controller.php';
+    $data_request = json_decode(file_get_contents("php://input"), true);
 
-    new UserAdmController();
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && $data_request['url'] == 'http://localhost:5173/sign-in-adm') {
+        include './src/controller/user_adm_controller.php';
+        $user_adm_controller = new UserAdmController;
+        $user_adm_controller->create($data_request);
+    }
 ?>
