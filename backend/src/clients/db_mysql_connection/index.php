@@ -23,8 +23,6 @@
       if (!$conn) {
         echo 'Connection failed ';
       } else {
-        echo 'Connected to database mysql sophie/learn';
-        echo "\n";
         return $conn;
       }
     }
