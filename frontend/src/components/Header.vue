@@ -5,6 +5,8 @@
 <style scoped>
 h1 {
   text-align: center;
-  background-color: blue;
+  color: rgb(223, 0, 167);
+  font-size: 40px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 </style>
