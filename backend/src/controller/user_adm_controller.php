@@ -7,20 +7,13 @@
     protected $cpf;
     protected $password;
 
-    public function __construct()
-    {
-      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $data = json_decode(file_get_contents("php://input"), true);
+    public function create($data_request) {
+      $this->nome = $data_request['nome'];
+      $this->cpf = $data_request['cpf'];
+      $this->password = $data_request['password'];
 
-        $this->nome = $data['nome'];
-        $this->cpf = $data['cpf'];
-        $this->password = $data['password'];
-
-        new UserAdmService($this->nome, $this->cpf, $this->password);
-      } else {
-          header("HTTP/1.1 405 Method Not Allowed");
-          echo "Method Not Allowed";
-      }
+      $user_adm_service = new UserAdmService;
+      $user_adm_service->create($this->nome, $this->cpf, $this->password);
     }
   }
 ?>
