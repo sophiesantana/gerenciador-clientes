@@ -5,8 +5,15 @@ import Header from './components/Header.vue';
 
 const $route = useRoute();
 
+const showAdmLink = computed(() => {
+  if ($route.path === '/login' || $route.path === '/sign-in-adm')
+  return true;
+});
+
 const showCustomerLink = computed(() => {
-  return $route.path === '/costumers' || '/sign-in-costumer';
+  if ($route.path === '/sign-in-costumer' || $route.path === '/costumers') {
+    return true;
+  }
 });
 </script>
 
@@ -14,8 +21,8 @@ const showCustomerLink = computed(() => {
   <main>
     <Header />
     <nav id="links-header">
-      <RouterLink v-if="!showCustomerLink" to="/login">Login Adm</RouterLink>
-      <RouterLink v-if="!showCustomerLink" to="/sign-in-adm">Cadastro de Adm</RouterLink>
+      <RouterLink v-if="showAdmLink" to="/login">Login Adm</RouterLink>
+      <RouterLink v-if="showAdmLink" to="/sign-in-adm">Cadastro de Adm</RouterLink>
       <RouterLink v-if="showCustomerLink" to="/login">Voltar</RouterLink>
       <RouterLink v-if="showCustomerLink" to="/sign-in-costumer">Cadastro de Cliente</RouterLink>
       <RouterLink v-if="showCustomerLink" to="/costumers">Listar Clientes</RouterLink>

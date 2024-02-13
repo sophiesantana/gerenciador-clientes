@@ -1,29 +1,78 @@
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      formData: {
+        nome: '',
+        data: '',
+        cpf: '',
+        rg: '',
+        telefone: '',
+        endereco1: {
+          rua: '',
+          cidade: '',
+          estado: '',
+          cep: ''
+        },
+        endereco2: {
+          rua: '',
+          cidade: '',
+          estado: '',
+          cep: ''
+        },
+        url: window.location.href
+      },
+      isLoading: false,
+      error: null,
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      this.isLoading = true;
+      this.error = null;
+
+      axios.post('http://localhost/backend/', this.formData, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }).then(response => {
+          console.log('Data sent successfully', response.data);
+        }).catch(error => {
+          console.error('Error sending data', error);
+        });
+    },
+  },
+};
+</script>
+
 <template>
   <form action="" id="form">
     <div id="container">
       <div class="item">
         <label for="nome">Nome:</label>
-        <input type="text" name="nome">
+        <input type="text" name="nome" v-model="formData.nome">
       </div>
 
       <div class="item">
         <label for="data">Data de Nascimento:</label>
-        <input type="date" name="data">
+        <input type="date" name="data" v-model="formData.data">
       </div>
 
       <div class="item">
         <label for="cpf">CPF:</label>
-        <input type="number" name="cpf">
+        <input type="text" name="cpf" v-model="formData.cpf">
       </div>
 
       <div class="item">
         <label for="rg">RG:</label>
-        <input type="number" name="rg">
+        <input type="text" name="rg" v-model="formData.rg">
       </div>
 
       <div class="item">
         <label for="telefone">Telefone:</label>
-        <input type="number" name="telefone" placeholder="DDD + telefone">
+        <input type="text" name="telefone" placeholder="DDD + telefone" v-model="formData.telefone">
       </div>
 
       <div id="adresses">
@@ -31,19 +80,19 @@
           <p>Endereço 1:</p>
           <div class="item">
             <label for="street">Rua:</label>
-            <input type="text" name="street">
+            <input type="text" name="street" v-model="formData.endereco1.rua">
           </div>
           <div class="item">
             <label for="city">Cidade:</label>
-            <input type="text" name="city">
+            <input type="text" name="city" v-model="formData.endereco1.cidade">
           </div>
           <div class="item">
             <label for="state">Estado:</label>
-            <input type="text" name="state">
+            <input type="text" name="state" v-model="formData.endereco1.estado">
           </div>
           <div class="item">
             <label for="postal-code">CEP:</label>
-            <input type="text" name="postal-code">
+            <input type="text" name="postal-code" v-model="formData.endereco1.cep">
           </div>
         </div>
 
@@ -51,19 +100,19 @@
           <p>Endereço 2:</p>
           <div class="item">
             <label for="street">Rua:</label>
-            <input type="text" name="street">
+            <input type="text" name="street" v-model="formData.endereco2.rua">
           </div>
           <div class="item">
             <label for="city">Cidade:</label>
-            <input type="text" name="city">
+            <input type="text" name="city" v-model="formData.endereco2.cidade">
           </div>
           <div class="item">
             <label for="state">Estado:</label>
-            <input type="text" name="state">
+            <input type="text" name="state" v-model="formData.endereco2.estado">
           </div>
           <div class="item">
             <label for="postal-code">CEP:</label>
-            <input type="text" name="postal-code">
+            <input type="text" name="postal-code" v-model="formData.endereco2.cep">
           </div>
         </div>
       </div>
