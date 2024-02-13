@@ -6,7 +6,7 @@ export default {
     return {
       formData: {
         nome: '',
-        data: '',
+        dataNasc: '',
         cpf: '',
         rg: '',
         telefone: '',
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <template>
-  <form action="" id="form">
+  <form id="form" @submit.prevent="handleSubmit">
     <div id="container">
       <div class="item">
         <label for="nome">Nome:</label>
@@ -57,7 +57,7 @@ export default {
 
       <div class="item">
         <label for="data">Data de Nascimento:</label>
-        <input type="date" name="data" v-model="formData.data">
+        <input type="date" name="data" v-model="formData.dataNasc">
       </div>
 
       <div class="item">
